@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MediTrack AI — Pharmacy workspace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/sale-items.css">
+  <link rel="stylesheet" href="/css/premium.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-dashboard" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="5" rx="2"/><rect x="13" y="10" width="8" height="11" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/></symbol>
+    <symbol id="icon-pill" viewBox="0 0 24 24"><path d="M10.5 20.5a6.36 6.36 0 0 1-9-9l8-8a6.36 6.36 0 0 1 9 9l-8 8Z"/><path d="m8.5 8.5 7 7"/></symbol>
+    <symbol id="icon-package" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="M3 8v9l9 5 9-5V8M12 13v9M7.5 5.5l9 5"/></symbol>
+    <symbol id="icon-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 3 6-7"/><path d="M17 6h4v4"/></symbol>
+    <symbol id="icon-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></symbol>
+    <symbol id="icon-sparkles" viewBox="0 0 24 24"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/><path d="m19 14 .9 2.1L22 17l-2.1.9L19 20l-.9-2.1L16 17l2.1-.9L19 14ZM5 3l.7 1.3L7 5l-1.3.7L5 7l-.7-1.3L3 5l1.3-.7L5 3Z"/></symbol>
+    <symbol id="icon-logout" viewBox="0 0 24 24"><path d="M10 17l5-5-5-5M15 12H3"/><path d="M12 3h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6"/></symbol>
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="icon-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="m18 6-12 12M6 6l12 12"/></symbol>
+    <symbol id="icon-alert" viewBox="0 0 24 24"><path d="m10.3 3.9-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3.1l-8-14a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="icon-rupee" viewBox="0 0 24 24"><path d="M5 4h14M5 8h14M7 4c5 0 8 2 8 6s-3 6-8 6h-.5L15 21"/></symbol>
+    <symbol id="icon-receipt" viewBox="0 0 24 24"><path d="M4 3v18l4-2 4 2 4-2 4 2V3l-4 2-4-2-4 2-4-2Z"/><path d="M8 9h8M8 13h8"/></symbol>
+    <symbol id="icon-wallet" viewBox="0 0 24 24"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4H20v16H6a3 3 0 0 1-3-3V7a.5.5 0 0 1 .5-.5H20"/><path d="M16 13h4M16 13a1 1 0 1 0 0 .01"/></symbol>
+    <symbol id="icon-boxes" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="M3 8v9l9 5 9-5V8M12 13v9"/></symbol>
+    <symbol id="icon-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2m3 0-1 14H6L5 6"/><path d="M10 11v5M14 11v5"/></symbol>
+  </svg>
+  <div id="loginView" class="login-screen">
+    <div class="login-card">
+      <div class="brand-mark">M<span>+</span></div>
+      <p class="eyebrow">PHARMACY WORKSPACE</p><h1>Good care starts<br>with good control.</h1>
+      <p class="muted">Manage inventory, monitor expiry and plan ahead with MediTrack AI.</p>
+      <form id="loginForm" class="stack-form">
+        <label>Email address<input name="email" type="email" value="pharmacist@meditrack.local" required autocomplete="username"></label>
+        <label>Password<input name="password" type="password" value="ChangeMe123!" required autocomplete="current-password"></label>
+        <button class="btn btn-primary full" type="submit">Sign in <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></button>
+        <p class="form-note">Demo credentials are prefilled. Change them in your backend .env file.</p>
+        <p id="loginError" class="error-text"></p>
+      </form>
+    </div>
+    <div class="login-aside"><div class="aside-orb"></div><div class="aside-content"><span class="pill-label">INVENTORY, MADE INTELLIGENT</span><h2>More clarity.<br>Less waste.</h2><p>One calm workspace for the everyday decisions that keep a pharmacy moving.</p><div class="mini-stat"><span class="mini-dot"></span><span>Inventory insights</span><span class="mini-divider"></span><span>Demand forecast</span></div></div><span class="aside-footer">MEDITrack AI · PHARMACY OPERATIONS</span></div>
+  </div>
+  <div id="appView" class="app-shell hidden">
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-mark small">M<span>+</span></span><span><strong>MediTrack</strong><small>AI WORKSPACE</small></span></a>
+      <div class="nav-caption">WORKSPACE</div>
+      <nav id="mainNav">
+        <button class="nav-item active" data-page="dashboard"><svg class="icon" aria-hidden="true"><use href="#icon-dashboard"></use></svg>Overview</button>
+        <button class="nav-item" data-page="medicines"><svg class="icon" aria-hidden="true"><use href="#icon-pill"></use></svg>Medicines</button>
+        <button class="nav-item" data-page="batches"><svg class="icon" aria-hidden="true"><use href="#icon-package"></use></svg>Inventory & batches</button>
+        <button class="nav-item" data-page="sales"><svg class="icon" aria-hidden="true"><use href="#icon-chart"></use></svg>Sales history</button>
+        <button class="nav-item" data-page="alerts"><svg class="icon" aria-hidden="true"><use href="#icon-bell"></use></svg>Alerts <span id="alertBadge" class="nav-badge">0</span></button>
+        <button class="nav-item" data-page="forecast"><svg class="icon" aria-hidden="true"><use href="#icon-sparkles"></use></svg>AI forecast</button>
+      </nav>
+      <div class="sidebar-bottom"><div class="help-card"><span class="help-icon"><svg class="icon" aria-hidden="true"><use href="#icon-sparkles"></use></svg></span><strong>Stay ahead of stock</strong><p>Review expiry alerts and demand estimates regularly.</p></div><button id="logoutBtn" class="nav-item logout"><svg class="icon" aria-hidden="true"><use href="#icon-logout"></use></svg>Sign out</button></div>
+    </aside>
+    <main class="main-area">
+      <header class="topbar"><div><p class="eyebrow" id="pageEyebrow">YOUR PHARMACY AT A GLANCE</p><h1 id="pageTitle">Overview</h1></div><div class="top-actions"><span class="today-label" id="todayLabel"></span><button class="avatar" title="Pharmacist account">P</button></div></header>
+      <div id="toast" class="toast hidden"></div>
+      <section id="page-dashboard" class="page">
+        <div class="welcome-row"><div><h2>Your pharmacy, in focus.</h2><p>Here’s what needs your attention today.</p></div><button class="btn btn-primary" data-go="sales"><svg class="icon" aria-hidden="true"><use href="#icon-plus"></use></svg>Record a sale</button></div>
+        <div class="metric-grid">
+          <article class="metric-card"><div class="metric-head"><span>Active medicines</span><span class="metric-icon lilac"><svg class="icon" aria-hidden="true"><use href="#icon-pill"></use></svg></span></div><strong id="metricMedicines">—</strong><small>In your catalogue</small></article>
+          <article class="metric-card"><div class="metric-head"><span>Low stock</span><span class="metric-icon amber"><svg class="icon" aria-hidden="true"><use href="#icon-alert"></use></svg></span></div><strong id="metricLow">—</strong><small>At or below reorder level</small></article>
+          <article class="metric-card"><div class="metric-head"><span>Expiring soon</span><span class="metric-icon blue"><svg class="icon" aria-hidden="true"><use href="#icon-clock"></use></svg></span></div><strong id="metricExpiring">—</strong><small>Within the next 30 days</small></article>
+          <article class="metric-card"><div class="metric-head"><span>Revenue · 30 days</span><span class="metric-icon green"><svg class="icon" aria-hidden="true"><use href="#icon-rupee"></use></svg></span></div><strong id="metricRevenue">—</strong><small id="metricTransactions">Completed sales</small></article>
+        </div>
+        <div class="content-grid"><article class="panel chart-panel"><div class="panel-head"><div><h3>Sales overview</h3><p>Revenue over the last 7 days</p></div><span class="soft-tag">7 DAYS</span></div><div class="chart-wrap"><canvas id="salesChart"></canvas></div></article><article class="panel"><div class="panel-head"><div><h3>Needs attention</h3><p>Priority inventory alerts</p></div><button class="text-btn" data-go="alerts">View all <svg class="icon" aria-hidden="true"><use href="#icon-chevron-right"></use></svg></button></div><div id="dashboardAlerts" class="alert-list"><div class="empty-state">Loading alerts…</div></div></article></div>
+        <article class="panel"><div class="panel-head"><div><h3>Recent sales</h3><p>Latest completed transactions</p></div><button class="text-btn" data-go="sales">View history →</button></div><div class="table-scroll"><table><thead><tr><th>Sale reference</th><th>Date</th><th>Items</th><th>Total</th><th>Status</th></tr></thead><tbody id="recentSalesBody"></tbody></table></div></article>
+      </section>
+      <section id="page-medicines" class="page hidden">
+        <div class="page-toolbar"><div><h2>Medicine catalogue</h2><p>Manage products and reorder thresholds.</p></div><button class="btn btn-primary" id="addMedicineBtn"><svg class="icon" aria-hidden="true"><use href="#icon-plus"></use></svg>Add medicine</button></div>
+        <div class="panel"><div class="table-tools"><input id="medicineSearch" class="search-input" placeholder="⌕  Search medicine or code…"><span id="medicineCount" class="muted small-text"></span></div><div class="table-scroll"><table><thead><tr><th>Medicine</th><th>Code</th><th>Category</th><th>Sellable stock</th><th>Price / unit</th><th>Status</th><th></th></tr></thead><tbody id="medicinesBody"></tbody></table></div></div>
+      </section>
+      <section id="page-batches" class="page hidden">
+        <div class="page-toolbar"><div><h2>Inventory & batches</h2><p>Track stock by batch and expiry date.</p></div><button class="btn btn-primary" id="addBatchBtn"><svg class="icon" aria-hidden="true"><use href="#icon-plus"></use></svg>Add batch</button></div>
+        <div class="panel"><div class="table-tools"><span class="muted small-text">Expired stock is excluded from sellable quantity.</span></div><div class="table-scroll"><table><thead><tr><th>Medicine</th><th>Batch</th><th>Expiry date</th><th>Received</th><th>Available</th><th>Purchase cost</th><th>Status</th></tr></thead><tbody id="batchesBody"></tbody></table></div></div>
+      </section>
+      <section id="page-sales" class="page hidden">
+        <div class="page-toolbar"><div><h2>Sales & analytics</h2><p>Understand revenue, popular medicines and category performance.</p></div><div class="inline-actions"><select id="salesAnalyticsPeriod" class="select-input" aria-label="Sales analytics period"><option value="7">Last 7 days</option><option value="30" selected>Last 30 days</option><option value="90">Last 90 days</option></select><button class="btn btn-primary" id="newSaleBtn"><svg class="icon" aria-hidden="true"><use href="#icon-plus"></use></svg>Record a sale</button></div></div>
+        <div class="metric-grid">
+          <article class="metric-card"><div class="metric-head"><span>Revenue</span><span class="metric-icon green"><svg class="icon" aria-hidden="true"><use href="#icon-rupee"></use></svg></span></div><strong id="salesAnalyticsRevenue">—</strong><small id="salesAnalyticsGrowth">Selected period</small></article>
+          <article class="metric-card"><div class="metric-head"><span>Transactions</span><span class="metric-icon blue"><svg class="icon" aria-hidden="true"><use href="#icon-receipt"></use></svg></span></div><strong id="salesAnalyticsTransactions">—</strong><small>Completed sales</small></article>
+          <article class="metric-card"><div class="metric-head"><span>Average sale</span><span class="metric-icon lilac"><svg class="icon" aria-hidden="true"><use href="#icon-wallet"></use></svg></span></div><strong id="salesAnalyticsAverage">—</strong><small>Revenue per transaction</small></article>
+          <article class="metric-card"><div class="metric-head"><span>Units sold</span><span class="metric-icon amber"><svg class="icon" aria-hidden="true"><use href="#icon-boxes"></use></svg></span></div><strong id="salesAnalyticsUnits">—</strong><small>Across all sale items</small></article>
+        </div>
+        <article class="panel"><div class="panel-head"><div><h3>Revenue trend</h3><p>Daily sales revenue during the selected period</p></div></div><div class="chart-wrap large"><canvas id="salesAnalyticsTrend"></canvas></div></article>
+        <div class="content-grid">
+          <article class="panel"><div class="panel-head"><div><h3>Top-selling medicines</h3><p>Ranked by units sold</p></div></div><div class="chart-wrap large"><canvas id="salesTopProducts"></canvas></div></article>
+          <article class="panel"><div class="panel-head"><div><h3>Revenue by category</h3><p>Category share of sales revenue</p></div></div><div class="chart-wrap large"><canvas id="salesCategoryChart"></canvas></div></article>
+        </div>
+        <article class="panel"><div class="panel-head"><div><h3>Transactions</h3><p>Latest 250 transactions</p></div></div><div class="table-scroll"><table><thead><tr><th>Reference</th><th>Date & time</th><th>Items</th><th>Quantity</th><th>Total</th><th>Status</th></tr></thead><tbody id="salesBody"></tbody></table></div></article>
+      </section>
+      <section id="page-alerts" class="page hidden">
+        <div class="page-toolbar"><div><h2>Inventory alerts</h2><p>Expiry risk and replenishment reminders.</p></div><button class="btn btn-secondary" id="refreshAlertsBtn">↻ Refresh</button></div>
+        <div class="alert-summary-grid"><div class="alert-summary critical"><span>Expired batches</span><strong id="alertExpiredCount">0</strong></div><div class="alert-summary warning"><span>Expiring soon</span><strong id="alertExpiringCount">0</strong></div><div class="alert-summary neutral"><span>Low stock</span><strong id="alertLowCount">0</strong></div></div>
+        <div id="allAlerts" class="alert-cards"></div>
+      </section>
+      <section id="page-forecast" class="page hidden">
+        <div class="page-toolbar"><div><h2>AI demand forecast</h2><p>Shows medicines projected to run out during the selected period.</p></div><div class="inline-actions"><select id="forecastHorizon" class="select-input"><option value="7">Next 7 days</option><option value="30">Next 30 days</option></select><button class="btn btn-primary" id="runForecastBtn">Run forecast ↗</button></div></div>
+        <div class="forecast-note"><span><svg class="icon" aria-hidden="true"><use href="#icon-sparkles"></use></svg></span><div><strong>Decision support, not a guarantee</strong><p>Predictions are estimates. Check the data coverage and use your judgement before ordering stock.</p></div></div>
+        <div id="forecastMeta" class="muted small-text forecast-meta">No forecast generated yet.</div>
+        <div class="panel"><div class="panel-head"><div><h3>Projected stockouts</h3><p>Medicines whose forecast demand exceeds sellable stock</p></div></div><div class="table-scroll"><table><thead><tr><th>Medicine</th><th>Forecast demand</th><th>Sellable stock</th><th>Suggested reorder</th><th>Demand signal</th></tr></thead><tbody id="forecastBody"><tr><td colspan="5" class="empty-state">Run a forecast to view projected stockouts.</td></tr></tbody></table></div></div>
+        <div class="panel"><div class="panel-head"><div><h3>Stockout comparison</h3><p>Forecast demand and available stock for at-risk medicines</p></div></div><div class="chart-wrap large"><canvas id="forecastChart"></canvas></div></div>
+      </section>
+    </main>
+  </div>
+  <dialog id="medicineDialog" class="modal"><form id="medicineForm" class="modal-form"><div class="modal-head"><div><p class="eyebrow">CATALOGUE</p><h2>Add medicine</h2></div><button type="button" class="icon-btn" data-close="medicineDialog" aria-label="Close dialog"><svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg></button></div><div class="form-grid"><label>Medicine name<input name="name" required maxlength="120" placeholder="e.g. Paracetamol 500mg"></label><label>Medicine code<input name="medicineCode" required placeholder="e.g. PARA500"></label><label>Category<input name="category" value="General"></label><label>Unit<select name="unit"><option value="strip">Strip</option><option value="tablet">Tablet</option><option value="bottle">Bottle</option><option value="box">Box</option><option value="capsule">Capsule</option><option value="sachet">Sachet</option><option value="piece">Piece</option></select></label><label>Selling price (₹)<input name="sellingPrice" type="number" min="0" step="0.01" required></label><label>Reorder level<input name="reorderLevel" type="number" min="0" step="1" value="10" required></label><div class="form-section-title">Initial batch (optional)</div><label>Batch number<input name="batchNumber" placeholder="e.g. BATCH-001"></label><label>Expiry date<input name="expiryDate" type="date"></label><label>Initial quantity<input name="quantity" type="number" min="0" step="1" value="0"></label><label>Purchase cost / unit (₹)<input name="purchaseCost" type="number" min="0" step="0.01" value="0"></label></div><p class="form-note">If you enter a batch number, an expiry date is required.</p><div class="modal-actions"><button type="button" class="btn btn-secondary" data-close="medicineDialog">Cancel</button><button class="btn btn-primary" type="submit">Save medicine</button></div><p id="medicineFormError" class="error-text"></p></form></dialog>
+  <dialog id="batchDialog" class="modal"><form id="batchForm" class="modal-form"><div class="modal-head"><div><p class="eyebrow">INVENTORY</p><h2>Add batch</h2></div><button type="button" class="icon-btn" data-close="batchDialog" aria-label="Close dialog"><svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg></button></div><label>Medicine<select name="medicineId" id="batchMedicineSelect" required></select></label><div class="form-grid"><label>Batch number<input name="batchNumber" required></label><label>Expiry date<input name="expiryDate" type="date" required></label><label>Quantity received<input name="quantity" type="number" min="0" step="1" required></label><label>Purchase cost / unit (₹)<input name="purchaseCost" type="number" min="0" step="0.01" required></label></div><div class="modal-actions"><button type="button" class="btn btn-secondary" data-close="batchDialog">Cancel</button><button class="btn btn-primary" type="submit">Add batch</button></div><p id="batchFormError" class="error-text"></p></form></dialog>
+  <dialog id="saleDialog" class="modal"><form id="saleForm" class="modal-form"><div class="modal-head"><div><p class="eyebrow">TRANSACTION</p><h2>Record a sale</h2></div><button type="button" class="icon-btn" data-close="saleDialog" aria-label="Close dialog"><svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg></button></div><div id="saleItems" class="sale-items"></div><button type="button" class="btn btn-secondary add-sale-item" id="addSaleItemBtn"><svg class="icon" aria-hidden="true"><use href="#icon-plus"></use></svg>Add another medicine</button><div class="sale-total"><span>Transaction total</span><strong id="saleTotal">₹0.00</strong></div><p class="form-note">Add each medicine to this transaction. Stock is deducted from the earliest-expiring eligible batches (FEFO); expired stock cannot be sold.</p><div class="modal-actions"><button type="button" class="btn btn-secondary" data-close="saleDialog">Cancel</button><button class="btn btn-primary" type="submit">Complete sale</button></div><p id="saleFormError" class="error-text"></p></form></dialog>
+  <script src="/js/app.js"></script>
+</body>
+</html>
