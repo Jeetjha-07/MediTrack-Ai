@@ -21,9 +21,9 @@ app.use(session({
   cookie: { httpOnly: true, sameSite: 'lax', secure: process.env.NODE_ENV === 'production', maxAge: 8*60*60*1000 }
 }));
 app.use(morgan('dev'));
+app.get('/api/health', (req,res) => res.json({ ok:true, app:'MediTrack AI' }));
 app.use('/api', api);
 app.use(express.static(path.join(__dirname, '..', 'frontend')));
-app.get('/api/health', (req,res) => res.json({ ok:true, app:'MediTrack AI' }));
 app.use((err, req, res, next) => {
   console.error(err);
   if (err.name === 'ValidationError') return res.status(400).json({ error: err.message });
