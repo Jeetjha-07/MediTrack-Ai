@@ -1,0 +1,2 @@
+mongodb_uri: "REPLACE_WITH_MONGODB_URI"
+session_secret: "REPLACE_WITH_LONG_RANDOM_SECRET"

@@ -1,0 +1,83 @@
+﻿---
+- name: Deploy MediTrack AI
+  hosts: meditrack_app
+  become: yes
+
+  vars_files:
+    - vault.yml
+
+  vars:
+    app_dir: /opt/MediTrack-Ai
+    repo_url: "https://github.com/Jeetjha-07/MediTrack-Ai.git"
+    container_name: meditrack-ai
+    image_name: meditrack-ai:latest
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install Docker and Git
+      apt:
+        name:
+          - docker.io
+          - git
+        state: present
+
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Clone or update MediTrack repository
+      git:
+        repo: "{{ repo_url }}"
+        dest: "{{ app_dir }}"
+        version: main
+        update: yes
+
+    - name: Create application environment file
+      copy:
+        dest: "{{ app_dir }}/backend/.env"
+        owner: root
+        group: root
+        mode: '0600'
+        content: |
+          PORT=4000
+          NODE_ENV=production
+          MONGODB_URI={{ mongodb_uri }}
+          SESSION_SECRET={{ session_secret }}
+          PYTHON_EXECUTABLE=/opt/venv/bin/python
+      no_log: true
+
+    - name: Build MediTrack Docker image
+      command: docker build -f backend/dockerfile -t {{ image_name }} .
+      args:
+        chdir: "{{ app_dir }}"
+
+    - name: Remove previous MediTrack container
+      command: docker rm -f {{ container_name }}
+      register: remove_container
+      failed_when: false
+      changed_when: remove_container.rc == 0
+
+    - name: Start MediTrack container
+      command: >
+        docker run -d
+        --name {{ container_name }}
+        --restart unless-stopped
+        --env-file {{ app_dir }}/backend/.env
+        -p 4000:4000
+        {{ image_name }}
+
+    - name: Wait for application health
+      uri:
+        url: http://127.0.0.1:4000/api/health
+        method: GET
+        status_code: 200
+      register: health_result
+      retries: 12
+      delay: 10
+      until: health_result.status == 200

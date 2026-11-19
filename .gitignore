@@ -1,5 +1,32 @@
+
+# Environment secrets
+.env
+*.env
+*.pem
+*.key
+
+# Ansible secrets
+ansible/vault-password.txt
+
+# Node dependencies
 node_modules/
-backend/.env
+
+# Terraform
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/*.tfvars
+terraform/*.tfvars.json
+terraform/crash.log
+terraform/override.tf
+terraform/override.tf.json
+terraform/state-backup.json
+
+
+
+# Python
 __pycache__/
 *.pyc
+
+# OS files
 .DS_Store
