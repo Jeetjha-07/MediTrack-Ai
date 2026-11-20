@@ -17,6 +17,13 @@ resource "aws_security_group" "meditrack_sg" {
   }
 
   ingress {
+    from_port       = 5666
+    to_port         = 5666
+    protocol        = "tcp"
+    security_groups = ["sg-06e6c79b8fcd0e331"]
+  }
+
+  ingress {
     description = "Allow MediTrack application"
     from_port   = 4000
     to_port     = 4000
@@ -122,8 +129,7 @@ resource "terraform_data" "ansible_deployment" {
   depends_on = [
     aws_ec2_instance_state.ansible_master,
     aws_ec2_instance_state.meditrack,
-    aws_ec2_instance_state.puppet_master,
-    aws_ec2_instance_state.nagios
+
   ]
 
   provisioner "local-exec" {
